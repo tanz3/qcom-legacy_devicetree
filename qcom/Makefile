@@ -355,6 +355,35 @@ dtb-$(CONFIG_ARCH_MONACO) += monaco-rumi.dtb \
 	monacop-idp-v1.dtb
 endif
 
+ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
+dtbo-$(CONFIG_ARCH_SDM845) += \
+	sdm845-mtp-overlay.dtbo \
+	sdm845-v2-mtp-overlay.dtbo \
+	sdm845-v2.1-mtp-overlay.dtbo
+
+sdm845-mtp-overlay.dtbo-base := sdm845.dtb
+sdm845-v2-mtp-overlay.dtbo-base := sdm845-v2.dtb
+sdm845-v2.1-mtp-overlay.dtbo-base := sdm845-v2.1.dtb
+else
+dtb-$(CONFIG_ARCH_SDM845) += \
+	sdm845-mtp.dtb \
+	sdm845-v2-mtp.dtb \
+	sdm845-v2.1-mtp.dtb
+endif
+
+ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
+dtbo-$(CONFIG_ARCH_SDM670) += \
+	sdm670-mtp-overlay.dtbo \
+	sdm710-mtp-overlay.dtbo
+
+sdm670-mtp-overlay.dtbo-base := sdm670.dtb
+sdm710-mtp-overlay.dtbo-base := sdm710.dtb
+else
+dtb-$(CONFIG_ARCH_SDM670) += \
+	sdm670-mtp.dtb \
+	sdm710-mtp.dtb
+endif
+
 dtb-$(CONFIG_ARCH_SCUBA) += qrb2210-rb1.dtb
 
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
