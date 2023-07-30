@@ -692,11 +692,13 @@
 	status = "ok";
 };
 
-&smb1355 {
+/delete-node/ &smb1355_0;
+
+&smb1355_1 {
 	status = "ok";
 };
 
-&smb1355_charger {
+&smb1355_charger_1 {
 	io-channels = <&pm8150b_vadc ADC_AMUX_THM2>;
 	io-channel-names = "charger_temp";
 	status = "ok";
