@@ -1,20 +1,13 @@
-/* Copyright (c) 2016-2019, The Linux Foundation. All rights reserved.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 and
- * only version 2 as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- */
-
 &mdss_mdp {
 	dsi_nt35597_truly_dsc_video: qcom,mdss_dsi_nt35597_dsc_video_truly {
 		qcom,mdss-dsi-panel-name =
 			"nt35597 video mode dsi truly panel with DSC";
 		qcom,mdss-dsi-panel-type = "dsi_video_mode";
+
+		qcom,dsi-ctrl-num = <1>;
+		qcom,dsi-phy-num = <1>;
+		qcom,dsi-select-clocks = "src_byte_clk1", "src_pixel_clk1";
+
 		qcom,mdss-dsi-virtual-channel-id = <0>;
 		qcom,mdss-dsi-stream = <0>;
 		qcom,mdss-dsi-bpp = <24>;
@@ -40,7 +33,7 @@
 		qcom,mdss-dsi-dma-schedule-line = <5>;
 
 		qcom,mdss-dsi-display-timings {
-			timing@0{
+			timing@0 {
 				qcom,mdss-dsi-panel-width = <1440>;
 				qcom,mdss-dsi-panel-height = <2560>;
 				qcom,mdss-dsi-h-front-porch = <100>;
@@ -228,17 +221,6 @@
 				qcom,mdss-dsc-bit-per-pixel = <8>;
 				qcom,mdss-dsc-block-prediction-enable;
 			};
-		};
-		dsi_nt35597_truly_dsc_video_config2: config2 {
-			qcom,lm-split = <720 720>;
-			qcom,mdss-dsc-encoders = <2>; /* DSC Merge */
-			qcom,mdss-dsc-slice-height = <16>;
-			qcom,mdss-dsc-slice-width = <720>;
-			qcom,mdss-dsc-slice-per-pkt = <2>;
-
-			qcom,mdss-dsc-bit-per-component = <8>;
-			qcom,mdss-dsc-bit-per-pixel = <8>;
-			qcom,mdss-dsc-block-prediction-enable;
 		};
 	};
 };

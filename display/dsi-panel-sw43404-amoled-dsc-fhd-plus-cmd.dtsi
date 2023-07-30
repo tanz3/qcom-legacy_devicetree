@@ -1,21 +1,12 @@
-/* Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 and
- * only version 2 as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- */
-
 &mdss_mdp {
 	dsi_sw43404_amoled_fhd_plus_cmd: qcom,mdss_dsi_sw43404_fhd_plus_cmd {
 		qcom,mdss-dsi-panel-name =
 		  "sw43404 amoled boe fhd+ panel with DSC";
 		qcom,mdss-dsi-panel-type = "dsi_cmd_mode";
 		qcom,mdss-dsi-panel-physical-type = "oled";
+		qcom,dsi-ctrl-num = <0>;
+		qcom,dsi-phy-num = <0>;
+
 		qcom,mdss-dsi-virtual-channel-id = <0>;
 		qcom,mdss-dsi-stream = <0>;
 		qcom,mdss-dsi-bpp = <24>;
@@ -49,7 +40,7 @@
 		qcom,mdss-dsi-panel-blackness-level = <3230>;
 
 		qcom,mdss-dsi-display-timings {
-			timing@0{
+			timing@0 {
 				qcom,mdss-dsi-panel-framerate = <60>;
 				qcom,mdss-dsi-panel-width = <1080>;
 				qcom,mdss-dsi-panel-height = <2160>;

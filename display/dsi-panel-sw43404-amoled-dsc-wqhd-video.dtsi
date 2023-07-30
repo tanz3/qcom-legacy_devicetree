@@ -1,21 +1,12 @@
-/* Copyright (c) 2018-2019, The Linux Foundation. All rights reserved.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 and
- * only version 2 as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- */
-
 &mdss_mdp {
 	dsi_sw43404_amoled_video: qcom,mdss_dsi_sw43404_amoled_wqhd_video {
 	qcom,mdss-dsi-panel-name =
 		"sw43404 amoled video mode dsi boe panel with DSC";
 	qcom,mdss-dsi-panel-type = "dsi_video_mode";
 	qcom,mdss-dsi-panel-physical-type = "oled";
+	qcom,dsi-ctrl-num = <0>;
+	qcom,dsi-phy-num = <0>;
+
 	qcom,mdss-dsi-virtual-channel-id = <0>;
 	qcom,mdss-dsi-stream = <0>;
 	qcom,mdss-dsi-bpp = <24>;
@@ -38,7 +29,7 @@
 	qcom,mdss-dsi-panel-blackness-level = <3230>;
 
 	qcom,mdss-dsi-display-timings {
-		timing@0{
+		timing@0 {
 			qcom,mdss-dsi-panel-width = <1440>;
 			qcom,mdss-dsi-panel-height = <2880>;
 			qcom,mdss-dsi-h-front-porch = <10>;
@@ -76,14 +67,28 @@
 			     00 00 00 00 00 00 00 00 00 00 00 00
 			     00 00 00 00 00 00 00 00 00 00 00 00
 			     00 00
+			  39 01 00 00 00 00 03 b0 a5 00
+			  15 01 00 00 00 00 02 e0 18
+			  39 01 00 00 00 00 0c c0 00 53 6f 51 50
+				51 34 4f 5a 33 19
 			  05 01 00 00 78 00 02 29 00
 			];
 			qcom,mdss-dsi-off-command = [05 01 00 00 78 00
 			   02 28 00 05 01 00 00 78 00 02 10 00];
 			qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
 			qcom,mdss-dsi-off-command-state = "dsi_hs_mode";
+			qcom,mdss-dsi-lp1-command = [
+				05 01 00 00 00 00 02 39 00
+			];
+			qcom,mdss-dsi-lp1-command-state =
+				"dsi_lp_mode";
+			qcom,mdss-dsi-nolp-command = [
+				05 01 00 00 00 00 02 38 00
+			];
+			qcom,mdss-dsi-nolp-command-state =
+				"dsi_lp_mode";
 			qcom,compression-mode = "dsc";
-			qcom,mdss-dsc-slice-height = <720>;
+			qcom,mdss-dsc-slice-height = <180>;
 			qcom,mdss-dsc-slice-width = <720>;
 			qcom,mdss-dsc-slice-per-pkt = <2>;
 			qcom,mdss-dsc-bit-per-component = <8>;
