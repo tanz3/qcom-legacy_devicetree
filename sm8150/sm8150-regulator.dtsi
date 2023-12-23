@@ -1,35 +1,6 @@
-/* Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 and
- * only version 2 as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- */
-
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 
-
-&soc {
-	/* Stub regulators */
-
-	/*
-	 * RPMh does not provide support for PM8150 S4 because it is always-on
-	 * at 1.8 V in auto mode.  Therefore, use a stub regulator for S4.
-	 */
-	S4A: pm8150_s4: regulator-pm8150-s4 {
-		compatible = "qcom,stub-regulator";
-		regulator-name = "pm8150_s4";
-		qcom,hpm-min-load = <100000>;
-		regulator-min-microvolt = <1800000>;
-		regulator-max-microvolt = <1800000>;
-	};
-};
-
-&apps_rsc {
+&apps_rsc_drv2 {
 	/* RPMh regulators: */
 
 	/* PM8150 S1 = VDD_MODEM supply */
@@ -73,13 +44,6 @@
 				= <RPMH_REGULATOR_LEVEL_MAX>;
 			qcom,init-voltage-level
 				= <RPMH_REGULATOR_LEVEL_RETENTION>;
-		};
-
-		ebi_cdev: regulator-cdev {
-			compatible = "qcom,rpmh-reg-cdev";
-			mboxes = <&qmp_aop 0>;
-			qcom,reg-resource-name = "ebi";
-			#cooling-cells = <2>;
 		};
 	};
 
@@ -486,6 +450,7 @@
 	rpmh-regulator-gfxlvl {
 		compatible = "qcom,rpmh-arc-regulator";
 		qcom,resource-name = "gfx.lvl";
+		VDD_GFX_LEVEL:
 		S2C_LEVEL: pm8150l_s2_level: regulator-pm8150l-s2-level {
 			regulator-name = "pm8150l_s2_level";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
@@ -539,14 +504,6 @@
 			qcom,init-voltage-level =
 				<RPMH_REGULATOR_LEVEL_RETENTION>;
 		};
-
-		mx_cdev: mx-cdev-lvl {
-			compatible = "qcom,regulator-cooling-device";
-			regulator-cdev-supply = <&VDD_MX_LEVEL>;
-			regulator-levels = <RPMH_REGULATOR_LEVEL_NOM
-					RPMH_REGULATOR_LEVEL_RETENTION>;
-			#cooling-cells = <2>;
-		};
 	};
 
 	/* PM8150L S5 = VDD_MM_CX supply */
@@ -594,14 +551,6 @@
 				= <RPMH_REGULATOR_LEVEL_MAX>;
 			qcom,init-voltage-level
 				= <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-		};
-
-		mm_cx_cdev: mm-cx-cdev-lvl {
-			compatible = "qcom,regulator-cooling-device";
-			regulator-cdev-supply = <&VDD_MMCX_LEVEL_AO>;
-			regulator-levels = <RPMH_REGULATOR_LEVEL_NOM
-					RPMH_REGULATOR_LEVEL_RETENTION>;
-			#cooling-cells = <2>;
 		};
 	};
 
@@ -653,30 +602,17 @@
 				= <RPMH_REGULATOR_LEVEL_TURBO
 				   RPMH_REGULATOR_LEVEL_MAX>;
 		};
-
-		cx_cdev: regulator-cdev {
-			compatible = "qcom,rpmh-reg-cdev";
-			mboxes = <&qmp_aop 0>;
-			qcom,reg-resource-name = "cx";
-			#cooling-cells = <2>;
-		};
 	};
 
 	rpmh-regulator-smpc8 {
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "smpc8";
-		qcom,regulator-type = "pmic5-hfsmps";
-		qcom,supported-modes =
-			<RPMH_REGULATOR_MODE_RET
-			 RPMH_REGULATOR_MODE_AUTO>;
-		 qcom,mode-threshold-currents = <0 200000>;
 		S8C: pm8150l_s8: regulator-pm8150l-s8 {
 			regulator-name = "pm8150l_s8";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1352000>;
 			regulator-max-microvolt = <1352000>;
 			qcom,init-voltage = <1352000>;
-			qcom,init-mode = <RPMH_REGULATOR_MODE_RET>;
 		};
 	};
 
