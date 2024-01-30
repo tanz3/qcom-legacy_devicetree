@@ -11,7 +11,7 @@
  * GNU General Public License for more details.
  */
 #include "sdm670-wcd.dtsi"
-#include "sdm670-wsa881x.dtsi"
+#include "../msm-wsa881x.dtsi"
 #include "sdm670-lpi.dtsi"
 #include <dt-bindings/clock/qcom,audio-ext-clk.h>
 
@@ -99,8 +99,8 @@
 	asoc-codec = <&stub_codec>;
 	asoc-codec-names = "msm-stub-codec.1";
 	qcom,wsa-max-devs = <2>;
-	qcom,wsa-devs = <&wsa881x_211>, <&wsa881x_212>,
-		<&wsa881x_213>, <&wsa881x_214>;
+	qcom,wsa-devs = <&wsa881x_70211>, <&wsa881x_70212>,
+		<&wsa881x_70213>, <&wsa881x_70214>;
 	qcom,wsa-aux-dev-prefix = "SpkrLeft", "SpkrRight",
 		"SpkrLeft", "SpkrRight";
 };
